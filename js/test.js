@@ -59,3 +59,34 @@ describe('obetenerPuntuacion', function() {
         expect(rest.obtenerPuntuacion()).to.be.equal(0);
     });
 });
+
+describe('calificar', function() {
+    it('nueva calificacion de 10 (anteriores: 5,5,5,5)', function() {
+        let rest = new Restaurant(
+            1,
+            'TAO Uptown',
+            'Asiática',
+            'Nueva York',
+            ['13:00', '15:30', '18:00'],
+            '../img/asiatica1.jpg',
+            [5, 5, 5, 5]
+        );
+        rest.calificar(10);
+        console.log(rest.calificaciones);
+        expect(rest.obtenerPuntuacion()).to.be.equal(6);
+    });
+    it('calificacion invalida de 11', function() {
+        let rest = new Restaurant(
+            1,
+            'TAO Uptown',
+            'Asiática',
+            'Nueva York',
+            ['13:00', '15:30', '18:00'],
+            '../img/asiatica1.jpg',
+            [5, 5, 5, 5]
+        );
+        rest.calificar(11);
+        expect(rest.calificaciones.length).to.be.equal(4);
+        expect(rest.obtenerPuntuacion()).to.be.equal(5);
+    });
+});
