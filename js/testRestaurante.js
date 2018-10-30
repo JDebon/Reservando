@@ -1,6 +1,6 @@
 var expect = chai.expect;
 
-describe('reservarHorarios', function() {
+describe('Restaurante.reservarHorarios', function() {
     it('reserva correcta a las 13:00', function() {
         let rest = new Restaurant(
             1,
@@ -33,7 +33,7 @@ describe('reservarHorarios', function() {
     });
 });
 
-describe('obetenerPuntuacion', function() {
+describe('Restaurante.obtenerPuntuacion', function() {
     it('promedio de las calificaciones 5,5,5,5,10', function() {
         let rest = new Restaurant(
             1,
@@ -60,7 +60,7 @@ describe('obetenerPuntuacion', function() {
     });
 });
 
-describe('calificar', function() {
+describe('Restaurante.calificar', function() {
     it('nueva calificacion de 10 (anteriores: 5,5,5,5)', function() {
         let rest = new Restaurant(
             1,
