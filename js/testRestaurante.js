@@ -72,7 +72,6 @@ describe('Restaurante.calificar', function() {
             [5, 5, 5, 5]
         );
         rest.calificar(10);
-        console.log(rest.calificaciones);
         expect(rest.obtenerPuntuacion()).to.be.equal(6);
     });
     it('calificacion invalida de 11', function() {
