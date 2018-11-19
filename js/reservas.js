@@ -10,50 +10,44 @@ Reserva.prototype.calcularPrecioBase = function calcularPrecioBaseFn() {
 };
 
 Reserva.prototype.calcularPrecioFinal = function calcularPrecioFinalFn() {
-    let descuentoPersona;
-    let descuentoCodigo;
-    let adicionalHorario;
-    let adicionalFinde;
+    return this.calcularPrecioBase() - this.descuentos() + this.adicionales();
+};
+
+Reserva.prototype.descuentos = function descuentosFn() {
+    let descuentos = 0;
+
     //DESCUENTOS POR PERSONA
     if (this.personas >= 4 && this.personas <= 6) {
-        descuentoPersona = (this.calcularPrecioBase() * 5) / 100;
+        descuentos += (this.calcularPrecioBase() * 5) / 100;
     } else if (this.personas >= 7 && this.personas <= 8) {
-        descuentoPersona = (this.calcularPrecioBase() * 10) / 100;
+        descuentos += (this.calcularPrecioBase() * 10) / 100;
     } else if (this.personas > 8) {
-        descuentoPersona = (this.calcularPrecioBase() * 15) / 100;
-    } else {
-        descuentoPersona = 0;
+        descuentos += (this.calcularPrecioBase() * 15) / 100;
     }
 
     //DESCUENTOS POR CODIGO
     if (this.codigo === 'DES1') {
-        descuentoCodigo = this.precioXPersona;
+        descuentos += this.precioXPersona;
     } else if (this.codigo === 'DES15') {
-        descuentoCodigo = (this.calcularPrecioBase() * 15) / 100;
+        descuentos += (this.calcularPrecioBase() * 15) / 100;
     } else if (this.codigo === 'DES200') {
-        descuentoCodigo = 200;
-    } else {
-        descuentoCodigo = 0;
+        descuentos += 200;
     }
 
+    return descuentos;
+};
+
+Reserva.prototype.adicionales = function adicionalesFn() {
+    let adicionales = 0;
     //ADICIONAL POR HORARIO
     if (this.horario.getHours() >= 13 && this.horario.getHours() <= 14) {
-        adicionalHorario = descuentoPersona = (this.calcularPrecioBase() * 5) / 100;
-    } else {
-        adicionalHorario = 0;
+        adicionales += (this.calcularPrecioBase() * 5) / 100;
     }
 
     //ADICIONAL POR FIN DE SEMANA
     if (this.horario.getDay() >= 5 && this.horario.getDay() <= 7) {
-        adicionalFinde = (this.calcularPrecioBase() * 10) / 100;
-    } else {
-        adicionalFinde = 0;
+        adicionales += (this.calcularPrecioBase() * 10) / 100;
     }
-    return (
-        this.calcularPrecioBase() -
-        descuentoPersona -
-        descuentoCodigo +
-        adicionalHorario +
-        adicionalFinde
-    );
+
+    return adicionales;
 };
