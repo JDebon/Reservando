@@ -4,6 +4,6 @@ describe('TDD', function() {
         let precioBase = reserva1.calcularPrecioBase();
         let precioFinal = reserva1.calcularPrecioFinal();
         expect(precioBase).to.be.equal(2800);
-        expect(precioFinal).to.be.equal(2310);
+        expect(precioFinal).to.be.equal(2450); //Cambio en el test debido a error de calculo en las guias.
     });
 });
